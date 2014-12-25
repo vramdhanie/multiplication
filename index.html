@@ -5,11 +5,13 @@
     <title>Multiplication Tables (Unit 1 Lesson 3)</title>
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
-<body ng-controller="MultiplicationController">
+<body ng-controller="MultiplicationController" initial-number-limit="20">
+   
+   <input type="number" ng-model="numberLimit" placeholder="Enter a number"/>
     
     <table>
         <tr ng-repeat="i in numbers">
-            <td ng-repeat="j in numbers">{{i * j}}</td>
+            <td ng-repeat="j in numbers">{{compute(i, j);}}</td>
         </tr>
     </table>
     
