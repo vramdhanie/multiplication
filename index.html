@@ -5,18 +5,31 @@
     <title>Multiplication Tables (Unit 1 Lesson 3)</title>
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
-<body ng-controller="MultiplicationController" initial-number-limit="20">
-   
+<body >
+
+  <div ng-controller="DisplayController">
+    {{content || 'Nothing Selected'}}
+  </div>
+
+  <div ng-controller="MultiplicationController" initial-number-limit="10">
    <input type="number" ng-model="numberLimit" placeholder="Enter a number"/>
-    
+
     <table>
         <tr ng-repeat="i in numbers">
-            <td ng-repeat="j in numbers">{{compute(i, j);}}</td>
+            <td ng-repeat="j in numbers"
+                ng-mouseover="setActiveFactors(i, j)"
+                ng-class="{hover: matchesFactor(i, j)}"
+                ng-mouseout="clearActiveFactors()"
+                ng-click="setActiveNumber(compute(i, j))">
+                {{compute(i, j);}}
+              </td>
         </tr>
     </table>
-    
+
+  </div>
+
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="scripts/app.js"></script>
-    
+
 </body>
 </html>
